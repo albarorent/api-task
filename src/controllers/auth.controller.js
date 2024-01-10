@@ -91,8 +91,8 @@ export const updateProfile = async (req, res) => {
     if (req.body.password) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       req.body.password = hashedPassword;
-    }else{
-      return res.status(404).json({message:"Password invalid"})
+    } else {
+      return res.status(404).json({ message: "Password invalid" });
     }
 
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {

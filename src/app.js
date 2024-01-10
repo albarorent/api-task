@@ -8,8 +8,10 @@ import taskRoutes from "./routes/tasks.routes.js";
 const app = express();
 
 // permitir solicitudes desde cualquier origen
-app.use(cors());
-
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
