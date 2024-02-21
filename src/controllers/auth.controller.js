@@ -20,8 +20,9 @@ export const register = async (req, res) => {
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved._id });
     res.cookie("token", token, {
+      secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
       httpOnly: true,
-      secure: true,
+      path: '/',
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
     });
@@ -53,8 +54,9 @@ export const login = async (req, res) => {
     const token = await createAccessToken({ id: userFound._id });
 
     res.cookie("token", token, {
+      secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
       httpOnly: true,
-      secure: false,
+      path: '/',
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
     });
