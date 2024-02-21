@@ -9,7 +9,7 @@ const app = express();
 
 // permitir solicitudes desde cualquier origen
 app.use(cors({
-    origin: 'https://starwars-tasks.netlify.app',
+    origin: 'http://localhost:5173',
     credentials: true,
   }));
 app.use(morgan("dev"));
