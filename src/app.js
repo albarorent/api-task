@@ -10,10 +10,10 @@ const app = express();
 // permitir solicitudes desde cualquier origen
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    methods: "GET, POST, PUT, DELETE",
-    allowedHeaders: "Content-Type",
-    credentials: true,
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 
