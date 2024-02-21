@@ -8,13 +8,7 @@ import taskRoutes from "./routes/tasks.routes.js";
 const app = express();
 
 // permitir solicitudes desde cualquier origen
-app.use(
-  cors({
-    origin: "https://starwars-tasks.netlify.app",
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"], // Añade los encabezados que necesites
-  })
-);
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
