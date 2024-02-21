@@ -57,7 +57,7 @@ export const login = async (req, res) => {
       secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
       httpOnly: true,
       path: '/',
-      sameSite: "none",
+      sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
     });
 
