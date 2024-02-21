@@ -19,7 +19,7 @@ export const register = async (req, res) => {
     });
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved._id });
-    res.cookie("token", token);
+    res.cookie("token", token, { domain: "api-tasks-u571.onrender.com", secure: true, sameSite: "None" });
 
     res.json({
       id: userSaved._id,
@@ -47,11 +47,8 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id });
 
-    res.cookie("token", token, {
-      secure: true, // Cookie solo se enviará a través de conexiones HTTPS
-      httpOnly: true, // La cookie solo es accesible mediante HTTP (no JavaScript)
-    });
-    console.log("token login:", token);
+    res.cookie("token", token, { domain: "api-tasks-u571.onrender.com" });
+    console.log('token login:',token);
     res.json({
       id: userFound._id,
       username: userFound.username,
