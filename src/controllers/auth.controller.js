@@ -51,12 +51,12 @@ export const login = async (req, res) => {
     const token = await createAccessToken({ id: userFound._id });
 
     res.cookie("token", token, {
-      maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
-      path: '/',
-      secure: false, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
-      httpOnly: true
+      maxAge: 3600,
+      httpOnly: false,
+      secure: false,
+      sameSite: "lax",
     });
-    
+
     console.log("token login:", token);
     res.json({
       id: userFound._id,
