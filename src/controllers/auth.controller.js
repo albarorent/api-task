@@ -52,9 +52,8 @@ export const login = async (req, res) => {
 
     res.cookie("token", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
-      domain: 'starwars-tasks.netlify.app',
       path: '/',
-      secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
+      secure: false, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
       httpOnly: true
     });
     
