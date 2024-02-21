@@ -10,7 +10,7 @@ const app = express();
 // permitir solicitudes desde cualquier origen
 app.use(
   cors({
-    origin: "*",
+    origin: ['http://localhost:5173'],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     optionsSuccessStatus: 204,
     credentials:true
