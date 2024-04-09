@@ -62,9 +62,8 @@ export const login = async (req, res) => {
     });
 
     // console.log("token login:", token);
-    localStorage.setItem('token', token);
+    localStorage.setItem('tokens', token);
 
-    console.log("token login:", token);
 
     res.json({
       id: userFound._id,
