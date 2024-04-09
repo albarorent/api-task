@@ -61,7 +61,11 @@ export const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
     });
 
+    // console.log("token login:", token);
+    localStorage.setItem('token', token);
+
     console.log("token login:", token);
+
     res.json({
       id: userFound._id,
       username: userFound.username,
