@@ -62,7 +62,7 @@ export const login = async (req, res) => {
     });
 
     // console.log("token login:", token);
-    // localStorage.setItem('tokens', token);
+    localStorage.setItem('tokens', token);
 
 
     res.json({
