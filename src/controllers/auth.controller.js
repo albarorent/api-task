@@ -19,15 +19,16 @@ export const register = async (req, res) => {
     });
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved._id });
-    res.cookie("token", token, {
-      secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
-      httpOnly: true,
-      path: '/',
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
-    });
+    // res.cookie("token", token, {
+    //   secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
+    //   httpOnly: true,
+    //   path: '/',
+    //   sameSite: "none",
+    //   maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
+    // });
 
     res.json({
+      token: token,
       id: userSaved._id,
       username: userSaved.username,
       email: userSaved.email,
@@ -53,18 +54,10 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id });
 
-    res.cookie("token", token, {
-      secure: true, // Se establece como true para enviar solo a través de conexiones seguras HTTPS
-      httpOnly: true,
-      path: '/',
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // Ejemplo: la cookie expirará en 7 días
-    });
-
     // console.log("token login:", token);
 
-
     res.json({
+      token: token,
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,
@@ -121,8 +114,7 @@ export const updateProfile = async (req, res) => {
 };
 
 export const verifyToken = async (req, res) => {
-  const { token } = req.cookies;
-
+  const token = req.header("Authorization").replace("Bearer ", "");
   if (!token) return res.status(401).json(["Unauthorized"]);
 
   jwt.verify(token, TOKEN_SECRET, async (err, user) => {
